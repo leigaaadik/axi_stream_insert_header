@@ -1,41 +1,23 @@
-## 使用Verilog实现axi_stream_insert_header模块并仿真验证
-模块的输入输出接口包括
-```verilog
-module	axi_stream_insert_header #(
-		parameter DATA_WD = 32,
-		parameter DATA_BYTE_WD = DATA_WD/8,
-		parameter BYTE_CNT_WD = $clog2(DATA_BYTE_WD)) 
-(
-		input                       clk                     ,
-		input                       rst_n                   ,
-
-		// AXI Stream input original data		
-		input                      valid_in                 ,
-		input [DATA_WD-1 : 0]      data_in                  ,
-		input [DATA_BYTE_WD-1 : 0] keep_in                  ,
-		input                      last_in                  ,
-		output                     ready_in                 ,
-
-		// AXI Stream output with header inserted		
-		output                       valid_out              ,
-		output [DATA_WD-1 : 0]       data_out               ,
-		output [DATA_BYTE_WD-1 : 0]  keep_out               ,
-		output                       last_out               ,
-		input                        ready_out              ,
-
-		// The header to be inserted to AXI Stream input	
-		input                       valid_insert            ,
-		input [DATA_WD-1 : 0]       data_insert             ,
-		input [DATA_BYTE_WD-1 : 0]  keep_insert             ,
-		input [BYTE_CNT_WD-1 : 0]   byte_insert_cnt         ,
-		output                      ready_insert
-);		
-```  
-
-使用Vivado的仿真功能对模块进行验证，编写testbench如下，验证激励采用随机方式生成。
-```verilog
 `timescale 1ns / 1ps
-
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2023/07/13 15:20:23
+// Design Name: tb_axi_stream_insert_header
+// Module Name: 
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 module tb_axi_stream_insert_header; 
 
@@ -194,4 +176,3 @@ assign 		last_in	= (cnt == tb_datain_depth) ? 1: 0		;
 
     
 endmodule
-```
